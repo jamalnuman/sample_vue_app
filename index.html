@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Intro</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"> <!-- the id of app needs to match the value of el -->
+    {{ message }} <!-- called handlebars or mustaches...the access any keys within the data object..this automatically references the data object, no need to call data[object] -->
+    <p v-if="showExtraInformation">Extra Information</p>
+    <!-- the v-if tag, will only display the <p> tags if the value of the v-if is true or truthy -->
+    <!-- <p>{{fruits}}</p>
+ -->    <button v-on:click="toggleExtraInfo">Toggle Button</button>
+    <div>
+      <button v-on:click="changeMessage()">Click Me!</button>
+        <div>
+          <input type="text" v-model='message'> 
+          <!-- v-model, works bi-directional...fill in the form with the 'message' content and also if the form input is changed also change the 'message'..remember most elements are one way directional, but with v-model it is bi-directional  -->
+        </div>
+    </div>
+    <input type="text" v-model='newFruit'>
+    <button v-on:click='addFruit'>Add Fruit!</button>
+    <ol>
+      <!-- the v-for uses the JS forEach method..the fruit is the block variable -->
+      <li v-for='fruit in fruits'> {{fruit}} <!-- the fruit is the block variable from the v-for..whatever the v-for is in...is the element that will be repeated --></li>
+    </ol>
+    <div id="id">
+      <button v-on:click="change">Second Button</button> 
+    </div>
+  </div>
+<!--   <script src="index.js"></script>
+ -->  <script>
+    // el and data are keywords that are required for VUE
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello Vue!", 
+      showExtraInformation: true,
+      fruits: ['apple', 'pear', 'avocado', 'orange'],
+      newFruit: ""
+    },
+    // all functions that are suppose to run in Vue..go here
+    methods: {
+      changeMessage: function(){
+        this.message = "Whoa...";
+      },
+      change: function(){
+        this.message = 'I changed the second button';
+      },
+      toggleExtraInfo: function(){
+        this.showExtraInformation = !this.showExtraInformation
+        // one-liner for the below code
+        // if(this.showExtraInformation){
+        // this.showExtraInformation = false;
+        // }else{
+        //   this.showExtraInformation = true;
+        // }
+      },
+      addFruit: function(){
+        this.fruits.push(this.newFruit);
+      }
+    }
+  });
+  </script>
+</body>
+</html>

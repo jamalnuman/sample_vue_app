@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Intro</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <div>1st number: <input type="text" placeholder="Enter Number" v-model=
+      'button1'></div>
+    <div>2nd number: <input type="text" placeholder="Enter Number" v-model='button2'></div>
+    <div>3rd number: <input type="text" placeholder="Enter Number" v-model='button3'></div>
+    <div><button v-on:click="change">Compute sum</button></div>
+    <!-- <p> The result is: {{result}} </p> -->
+    <p> The result is: {{result}} </p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "Hello Vue!",
+        result: "",
+        button1: "",
+        button2: "",
+        button3: ""
+      },
+      methods: {
+        change: function(){
+          this.result = parseInt(this.button1) + parseInt(this.button2) + parseInt(this.button3)
+        },
+
+        
+      }
+    });
+  </script>
+</body>
+</html>
